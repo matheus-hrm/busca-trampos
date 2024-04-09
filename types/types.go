@@ -24,3 +24,13 @@ type User struct {
 	Password  string 	`json:"-"`
 	CreatedAt time.Time `json:"CreatedAt"`
 }	
+
+type Post struct {
+	PostID			int
+	Title 			string
+	Description		string
+	Address			string
+	Salary 			float32
+	Status			string 
+	CreatedAt 		time.Time 
+}
