@@ -4,7 +4,9 @@ import (
 	"database/sql"
 	"log"
 	"net/http"
+
 	"github.com/gorilla/mux"
+	"github.com/matheus-hrm/trampos/service/post"
 	"github.com/matheus-hrm/trampos/service/user"
 )
 
@@ -28,6 +30,10 @@ func (s *APIServer) Run() error {
 	userHandler := user.NewHandler(userStore)
 	userHandler.RegisterRoutes(subrouter)
 	
+	postStore := post.NewStore(s.db)
+	postHandler := post.NewHandler(postStore)
+	postHandler.RegisterRoutes(subrouter)
+
 	log.Println("Server is running on", s.addr)
 	
 	return http.ListenAndServe(s.addr, router)
